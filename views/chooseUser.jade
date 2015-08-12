@@ -1,0 +1,26 @@
+html
+  head
+    title!=title
+  body
+    br
+    br
+    form(name="deposit", action="/deposits" method="post")
+       if(data != null && data.length)
+          div.input
+             span.label Pick a User name
+             select(name='eusername') 
+                each item in data
+                   option(value='#{item.name}') #{item.name}     
+          p OR
+       div.input
+          span.label User Name
+          input(type="text" name="username" id="username")
+       div.actions
+          input(type="submit", value="Move to check Deposit page")
+    form(name="deposit", action="/updatecheckstatus" method="get")
+         div.actions        
+             input(type="submit", value="Go And update status of a check")
+    form(name="deposit", action="/" method="get")
+         div.actions        
+             input(type="submit", value="Go Home")
+   

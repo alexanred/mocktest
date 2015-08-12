@@ -1,0 +1,39 @@
+html
+  head
+     title!= title
+  body
+     br
+     br
+     h1 Deposit Status
+     if(deposit != null)
+         table
+           thead(style="border: 1px solid black")
+             tr(style="border: 1px solid black")
+                th(style="border: 1px solid black") Check Number
+                th(style="border: 1px solid black") Amount
+                th(style="border: 1px solid black") Check Front Image
+                th(style="border: 1px solid black") Check Back  Image
+                th(style="border: 1px solid black") Status
+           tbody(style="border: 1px solid black")             
+              tr(style="border: 1px solid black")
+                td(style="border: 1px solid black") #{deposit.checknumber}
+                td(style="border: 1px solid black") #{deposit.amount}
+                td(style="border: 1px solid black") 
+                   img(src='/checkimage?username="#{deposit.username}"&checknumber="#{deposit.checknumber}"&type="front"')
+                td(style="border: 1px solid black")
+                   img(src='/checkimage?username="#{deposit.username}"&checknumber="#{deposit.checknumber}"&type="back"')                
+                td(style="border: 1px solid black") #{deposit.status}
+     form(name="deposit", action="/deposits" method="post")
+        input(type="hidden" name="username" id="username" value="#{username}")
+        div.actions        
+           input(type="submit", value="Another Deposit")
+     form(name="deposit", action="/deposits" method="get")
+         div.actions        
+             input(type="submit", value="Choose a differnt user")
+     form(name="deposit", action="/updatecheckstatus" method="get")
+         div.actions        
+             input(type="submit", value="Go And update status of a check")
+     form(name="deposit", action="/" method="get")
+         div.actions        
+             input(type="submit", value="Go Home")    
+    

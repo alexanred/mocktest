@@ -1,0 +1,32 @@
+html
+  head
+     title!= title
+  body
+     br
+     br
+     h1 Check Deposits     
+        h2 Status Updated Record
+         table
+           thead(style="border: 1px solid black")
+             tr(style="border: 1px solid black")
+                th(style="border: 1px solid black") Name
+                th(style="border: 1px solid black") Check Id
+                th(style="border: 1px solid black") Amount
+                th(style="border: 1px solid black") Status
+           tbody(style="border: 1px solid black")
+              tr(style="border: 1px solid black")
+                td(style="border: 1px solid black") #{deposit.name}
+                td(style="border: 1px solid black") #{deposit.checknumber}
+                td(style="border: 1px solid black") #{deposit.amount}
+                td(style="border: 1px solid black") #{deposit.status}
+
+     form(name="deposit", action="/updatecheckstatus" method="get")
+         div.actions        
+             input(type="submit", value="Go And update status of a check")
+     form(name="deposit", action="/deposits" method="get")
+         div.actions        
+             input(type="submit", value="Choose a User")
+     form(name="deposit", action="/" method="get")
+         div.actions        
+             input(type="submit", value="Go Home")        
+    

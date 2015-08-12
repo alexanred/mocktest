@@ -1,0 +1,46 @@
+html
+  head
+     title!= title
+  body
+     br
+     br
+     h1 Check Deposits     
+     form(name="deposit", action="/updateRecord" method="post")
+        h2 Status Update Record Details.
+         table
+           thead(style="border: 1px solid black")
+             tr(style="border: 1px solid black")
+                th(style="border: 1px solid black") Name
+                th(style="border: 1px solid black") Check Id
+                th(style="border: 1px solid black") Amount
+                th(style="border: 1px solid black") Status
+                th(style="border: 1px solid black") Statups Update Option
+                th(style="border: 1px solid black") Button
+           tbody(style="border: 1px solid black")
+              tr(style="border: 1px solid black")
+                td(style="border: 1px solid black") #{deposit.name}
+                td(style="border: 1px solid black") #{deposit.checknumber}
+                td(style="border: 1px solid black") #{deposit.amount}
+                td(style="border: 1px solid black") #{deposit.status}
+                td(style="border: 1px solid black") 
+                   select(name='status')                
+                      option(value='InProgress') InProgress
+                      option(value='Rejected') Rejected
+                      option(value='Cleared') Cleared
+                td(style="border: 1px solid black")
+                    input(type="hidden", name="username", id="username", value="#{deposit.name}")
+                    input(type="hidden", name="checknumber", id="checknumber", value="#{deposit.checknumber}")
+                    input(type="hidden", name="amount", id="amount", value="#{deposit.amount}")
+                    input(type="hidden", name="estatus", id="estatus", value="#{deposit.status}")
+                    input(type="submit", value="Update")
+
+     form(name="deposit", action="/updatecheckstatus" method="get")
+         div.actions        
+             input(type="submit", value="Go And update status of a check")
+     form(name="deposit", action="/deposits" method="get")
+         div.actions        
+             input(type="submit", value="Choose a User")
+     form(name="deposit", action="/" method="get")
+         div.actions        
+             input(type="submit", value="Go Home")        
+    

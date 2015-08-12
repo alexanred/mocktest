@@ -1,0 +1,53 @@
+html
+  head
+     title!= title
+     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+  body
+     br
+     br
+     h1 Check Deposits
+     if(deposits != null && deposits.length)
+        h2 Status of Check Deposits
+         table
+           thead(style="border: 1px solid black")
+             tr(style="border: 1px solid black")
+                th(style="border: 1px solid black") Check Id
+                th(style="border: 1px solid black") Amount
+                th(style="border: 1px solid black") Status
+           tbody(style="border: 1px solid black")
+             each deposit in deposits
+              tr(style="border: 1px solid black")
+                td(style="border: 1px solid black") #{deposit.checknumber}
+                td(style="border: 1px solid black") #{deposit.amount}
+                td(style="border: 1px solid black") #{deposit.status}
+     h2 Deposit a Check
+     form(name="deposit", action="/newdeposit" method="post" enctype="multipart/form-data")
+         if(data != null && data.length) 
+         div.input
+             span.label Check Id
+             input(type="text" name="checknumber" id="checknumber")
+         div.input
+             span.label Amount
+             input(type="text" name="amount" id="amount")
+             input(type="hidden" name="username" id="username" value="#{username}")
+         div.input
+             span.label Check Front Image
+             input(type="file" name="frontImage" id="frontImage" onchange="readURL(this)")
+             img(id="frontImageblah" src="#" alt="Image")
+         div.input
+             span.label Check Back Image
+             input(type="file" name="backImage" id="backImage" onchange="readURL(this)")
+             img(id="backImageblah" src="#" alt="Image")
+         div.actions        
+             input(type="submit", value="initiate deposit")
+     form(name="deposit", action="/deposits" method="get")
+         div.actions        
+             input(type="submit", value="Choose a differnt user")
+     form(name="deposit", action="/updatecheckstatus" method="get")
+         div.actions        
+             input(type="submit", value="Go And update status of a check")
+     form(name="deposit", action="/" method="get")
+         div.actions        
+             input(type="submit", value="Go Home")
+     script
+         include script.js    
